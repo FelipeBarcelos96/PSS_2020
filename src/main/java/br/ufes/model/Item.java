@@ -2,19 +2,18 @@ package br.ufes.model;
 
 import java.text.DecimalFormat;
 
-public final class Item {
+public final class ItemPedido {
 
     protected double valorUnitario;
     protected double quantidade;
     protected double valorItem;
     protected Produto produto;
 
-    public Item(Produto produto, double quantidadeAdquirida) {
-     
-        if (!produto.getEstoque().estoqueDisponivel(quantidadeAdquirida)) {
+    public ItemPedido(Produto produto, double quantidadeAdquirida) {
+        if (!produto.estoqueDisponivel(quantidadeAdquirida)) {
             throw new RuntimeException("Estoque indisponível para atender a quantidade solicitada (" + quantidadeAdquirida
                     + ") para o produto " + produto.getNome()
-                    + ", restam " + produto.getEstoque().getQuantidade() + " em estoque.");
+                    + ", restam " + produto.getQuantidade() + " em estoque.");
         }
         this.produto = produto;
         this.quantidade = quantidadeAdquirida;
