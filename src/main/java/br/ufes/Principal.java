@@ -2,6 +2,7 @@ package br.ufes;
 
 import br.ufes.model.Cliente;
 import br.ufes.model.CarrinhoDeCompra;
+import br.ufes.model.Endereco;
 import br.ufes.model.Produto;
 import java.time.LocalDate;
 
@@ -14,8 +15,8 @@ public class Principal {
     public static void main(String[] args) {
 
         try {
-
-            Cliente cliente1 = new Cliente("Fulano", "123.456.789-01");
+            Endereco endereco1 = new Endereco("Cidade dos Homens","rua A","666","MG");
+            Cliente cliente1 = new Cliente("Fulano","123.123.123-81 ", LocalDate.now(),endereco1);
 
             Produto produto1 = new Produto("Caneta", 3.50, 8);
 
