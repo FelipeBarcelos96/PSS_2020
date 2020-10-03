@@ -7,8 +7,24 @@ package br.ufes.model;
 
 /**
  *
- * @author nandi
+ * @author Felipe
  */
 public class PagamentoAVista implements FormaPagamento {
+
+    @Override
+    public void FormaPagamento() {
+        
+    }
+
+    @Override
+    public void pagar(Pedido pedido) {
+       try{
+           if(pedido.getEstado().toUpperCase().equals("PAGO") ){
+               pedido.setEstado("PAGO");
+           }
+       }catch(Exception e){
+           
+       }
+    }
     
 }

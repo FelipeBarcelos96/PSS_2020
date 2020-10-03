@@ -9,11 +9,11 @@ package br.ufes.model;
  *
  * @author nandi
  */
-public class DescontoAVista implements Desconto {
+public class DescontoPorTipo implements Desconto{
     
-    public double valor;
-    
-    public DescontoAVista(double valor) {
+    private double valor;
+
+    public DescontoPorTipo(double valor) {
         this.valor = valor;
     }
     
@@ -30,5 +30,4 @@ public class DescontoAVista implements Desconto {
     public boolean calculaRegra() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

@@ -7,8 +7,22 @@ package br.ufes.model;
 
 /**
  *
- * @author nandi
+ * @author Felipe
  */
 public class PagamentoDebito implements FormaPagamento {
-    
+    @Override
+    public void FormaPagamento() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void pagar(Pedido pedido) {
+        try{
+           if(pedido.getEstado().toUpperCase().equals("PAGO") ){
+               pedido.setEstado("PAGO");
+           }
+       }catch(Exception e){
+           
+       }
+    }
 }

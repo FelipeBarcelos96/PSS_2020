@@ -7,8 +7,13 @@ package br.ufes.model;
 
 /**
  *
- * @author nandi
+ * @author Felipe
  */
 public interface FormaPagamento {
+    
+    public void FormaPagamento();
+    public void pagar(Pedido pedido);
+    @Override
+    public String toString();
     
 }
