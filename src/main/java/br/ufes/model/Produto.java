@@ -6,13 +6,16 @@ public final class Produto {
     private String nome;
     private double valorUnitario;
     private double valorUltimaCompra;
-    private Estoque estoque;
     private String tipo;
+    private final Estoque estoque;
 
-    public Produto(String nome, double valorUnitario, double quantidade) {
+    public Produto(String nome, double valorUnitario, double estoque) {
         this.nome = nome;
         setValorUnitario(valorUnitario);
-        this.estoque = new Estoque(quantidade);
+        
+        Estoque estoque1 = new Estoque(estoque);
+        this.estoque = estoque1;
+        
     }
 
     public String getNome() {
@@ -21,6 +24,10 @@ public final class Produto {
 
     public double getValorUnitario() {
         return valorUnitario;
+    }
+    
+    public Estoque getEstoque() {
+        return estoque;
     }
 
     public double getValorUltimaCompra() {
@@ -43,9 +50,7 @@ public final class Produto {
         this.valorUnitario = valorUnitario;
     }
 
-    public Estoque getEstoque() {
-        return estoque;
-    }
+   
 
     public String getTipo() {
         return tipo;
@@ -55,8 +60,7 @@ public final class Produto {
     public String toString() {
         return "Produto: " + nome
                 + ", valor unitario: R$" + valorUnitario
-                + ", valor da ultima compra: R$" + valorUltimaCompra
-                + ", quantidade em estoque: " + this.getEstoque().toString();
+                + ", valor da ultima compra: R$" + valorUltimaCompra;
     }
 
 }

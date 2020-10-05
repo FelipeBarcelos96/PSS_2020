@@ -10,22 +10,24 @@ package br.ufes.model;
  * @author nandi
  */
 public class Estoque {
-    
+
     double quantidade;
-    
+
     public Estoque(double quantidade) {
         this.quantidade = quantidade;
     }
-    
+
     public boolean estoqueDisponivel(double quantidadeNecessaria) {
         return this.quantidade >= quantidadeNecessaria;
     }
-    
-    private void adicionarQuantidade(double quantidade){
-        
+
+    private void adicionarQuantidade(double quantidadeAdicionada) {
+
+        this.quantidade += quantidadeAdicionada;
+
     }
-    
-    public void removerQuantidade (double quantidade){
+
+    public void removerQuantidade(double quantidade) {
         this.quantidade -= quantidade;
     }
 
@@ -36,6 +38,6 @@ public class Estoque {
     @Override
     public String toString() {
         return Double.toString(quantidade);
-    }   
-    
+    }
+
 }

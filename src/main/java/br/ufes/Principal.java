@@ -25,34 +25,34 @@ public class Principal {
     public static void main(String[] args) {
 
         try {
-            Endereco endereco1 = new Endereco("Cidade dos Homens","rua A","666","MG");
-            Cliente cliente1 = new Cliente("Fulano","123.123.123-81 ", LocalDate.now(),endereco1);
+            Endereco endereco1 = new Endereco("Cidade dos Homens", "rua A", "666", "MG");
+            Cliente cliente1 = new Cliente("Fulano", "123.123.123-81 ", LocalDate.now(), endereco1);
 
-            Produto produto1 = new Produto("Caneta", 3.50, 8);
+            Produto produto1 = new Produto("Caneta", 3.50, 3);
 
             CarrinhoDeCompra carrinho1 = new CarrinhoDeCompra(cliente1,
-                    produto1, 5                   
+                    produto1, 5
             );
 
-            carrinho1.addItem(new Produto("Folha Papel A4", 0.05, 10), 10);
-            
+            carrinho1.addItem(produto1, 10);
+
             carrinho1.calcularValor();
-            
+
             FinalizarCarrinhoBusiness finalizar = new FinalizarCarrinhoBusiness();
-            Pedido pedido1 = finalizar.fechar(carrinho1);          
-            
+            Pedido pedido1 = finalizar.fechar(carrinho1);
+
             RealizarPagamento pagamento = new RealizarPagamento(pedido1, new PagamentoDebito(1234));
             pagamento.pagar();
-            
+
             GerarNotaFiscal geradorNota = new GerarNotaFiscal(pedido1);
             NotaFiscal nota = geradorNota.gerar();
-            
+
             CalculadorICMS calculadorICMS = new CalculadorICMS();
             calculadorICMS.calcularICMS(nota, 6.42);
-            
+
             ImpressaoNotaFiscalBusiness impressaoJson = new ImpressaoNotaFiscalJSON();
             impressaoJson.imprimir(nota);
-            
+
             ImpressaoNotaFiscalBusiness impressaoPdf = new ImpressaoNotaFiscalPDF();
             impressaoPdf.imprimir(nota);
 
