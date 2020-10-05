@@ -21,10 +21,16 @@ public class PagamentoAVista implements FormaPagamento {
        try{
            if(pedido.getEstado().toUpperCase().equals("PAGO") ){
                pedido.setEstado("PAGO");
+               pedido.setFormaPagamento(this);
            }
        }catch(Exception e){
-           
+           System.out.println("Erro durante o Pagamento!");
        }
     }
-    
+
+    @Override
+    public String toString() {
+        return " A Vista";
+    }
+           
 }

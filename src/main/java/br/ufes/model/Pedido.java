@@ -17,12 +17,14 @@ public class Pedido {
     private LocalDate dataValidade;
     private LocalDate data;
     private CarrinhoDeCompra carrinho;
+    private FormaPagamento formaPagamento;
     
     public Pedido(CarrinhoDeCompra carrinho, LocalDate data, int codigo){
         setCodPedido(codigo);
         setEstado("Em Aberto");
         setData(data);
         setCarrinho(carrinho);
+        this.formaPagamento = null;
     }
 
     public void setEstado(String estado) {
@@ -60,6 +62,18 @@ public class Pedido {
     public CarrinhoDeCompra getCarrinho() {
         return carrinho;
     }
-           
-        
+
+    public FormaPagamento getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
+
+    @Override
+    public String toString() {
+        return " Pedido de Número: " + Integer.toString(this.codPedido) + " , Estado: " + this.getEstado() + ", Data de Validade: " + this.getDataValidade().toString() + ", Data do Pedido: " + this.getData().toString() + ", Forma de Pagamento: " + this.getFormaPagamento().toString() + "/n Carrinho: " + this.getCarrinho().toString();
+    }
+         
 }
