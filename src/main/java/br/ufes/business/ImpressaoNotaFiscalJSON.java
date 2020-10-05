@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import org.json.simple.JSONObject;
 import br.ufes.model.NotaFiscal;
+import java.io.File;
 
 /**
  *
@@ -22,8 +23,16 @@ public class ImpressaoNotaFiscalJSON implements ImpressaoNotaFiscalBusiness{
       //Colocando Nota Fiscal no JSON
       jsonObject.put("Número da Nota", Integer.toString(nota.getNumeroNota()));
       jsonObject.put("Dados da Nota: ", nota.toString());
-      try {
-         FileWriter file = new FileWriter("../assets/Notas/Nota Fiscal "+Integer.toString(nota.getNumeroNota())+".json");
+      try { 
+          try {
+           File arquivo = new File("assets\\Notas\\Nota Fiscal "+Integer.toString(nota.getNumeroNota())+".json");
+              arquivo.createNewFile();
+          }catch (IOException e) {
+             System.out.println("Não Foi Possível Criar a nota em JSON!!!");
+             e.printStackTrace();
+          }
+          
+         FileWriter file = new FileWriter("assets\\Notas\\Nota Fiscal "+Integer.toString(nota.getNumeroNota())+".json");
          file.write(jsonObject.toJSONString());
          file.close();
       } catch (IOException e) {

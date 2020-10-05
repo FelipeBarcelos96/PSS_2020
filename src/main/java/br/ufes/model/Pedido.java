@@ -82,18 +82,18 @@ public class Pedido {
             return " Pedido de Número: " +
                     Integer.toString(this.codPedido) +
                     " , Estado: " + this.getEstado() +
-                    ", Data de Validade: " +this.getDataValidade().toString() +
                     ", Data do Pedido: " + this.getData().toString() +
+                    ", Data de Validade: " +this.getDataValidade().toString() +                    
                     ", Forma de Pagamento: Sem Forma de Pagamento " +
                     "\n Carrinho: " + this.getCarrinho().toString();
         } else {
             return " Pedido de Número: " +
                     Integer.toString(this.codPedido) +
                     " , Estado: " + this.getEstado() +
-                    ", Data de Validade: " +this.getDataValidade().toString() +
                     ", Data do Pedido: " + this.getData().toString() +
+                    ", Data de Validade: " +this.getDataValidade().toString() +                    
                     ", Forma de Pagamento: " + this.getFormaPagamento().toString() +
-                    "\n Carrinho: " + this.getCarrinho().toString();
+                    "\n" + this.getCarrinho().toString();
         }
     }
          

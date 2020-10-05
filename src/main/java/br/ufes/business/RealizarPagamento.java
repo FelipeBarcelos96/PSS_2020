@@ -6,6 +6,7 @@
 package br.ufes.business;
 
 import br.ufes.model.FormaPagamento;
+import br.ufes.model.Item;
 import br.ufes.model.Pedido;
 
 /**
@@ -16,12 +17,12 @@ public class RealizarPagamento {
     private Pedido pedido;
     private FormaPagamento formaPagamento;
     
-    public void RealizarPagamento(Pedido pedido, FormaPagamento formaPagamento){
+    public RealizarPagamento(Pedido pedido, FormaPagamento formaPagamento){
         setPedido(pedido);
         setFormaPagamento(formaPagamento);
     }
     
-    public void RealizarPagamento(Pedido pedido, FormaPagamento formaPagamento, int numero){
+    public RealizarPagamento(Pedido pedido, FormaPagamento formaPagamento, int numero){
         setPedido(pedido);
         setFormaPagamento(formaPagamento);
         this.getFormaPagamento().setNumero(numero);
@@ -48,6 +49,21 @@ public class RealizarPagamento {
         if(validador.verificaValidade(this.getPedido())){
             this.getFormaPagamento().pagar(this.getPedido());
             this.getPedido().setFormaPagamento(this.getFormaPagamento());
+            try{
+               for(Item item : this.getPedido().getCarrinho().getItens()){
+                   if(item.getProduto().getEstoque().estoqueDisponivel(item.getQuantidade())){
+                       item.getProduto().getEstoque().removerQuantidade(item.getQuantidade());
+                   }else{
+                       throw new RuntimeException("Estoque indisponível para atender a quantidade solicitada (" + Double.toString(item.getQuantidade())
+                    + ") para o produto " + item.getProduto().getNome()
+                    + ", restam " + item.getProduto().getEstoque().getQuantidade() + " em estoque.");
+                   }
+               }
+            }catch(Exception e){
+                System.out.println("Não foi possível Retirar os produtos do Estoque!!!");
+            }
+        }else{
+            throw new RuntimeException("Validade do Pedido Expirou! Realize um novo Pedido!");
         }        
     }                   
 }

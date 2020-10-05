@@ -55,7 +55,7 @@ public class NotaFiscal {
     @Override
     public String toString() {
         return "Nota Fiscal Número: " + Integer.toString(this.getNumeroNota()) +
-                "Valor Total: R$" + Double.toString(this.getValorTotal()) +
+                " \nValor Total: R$" + Double.toString(this.getValorTotal()) +
                 ", Valor ICMS: R$" + Double.toString(this.getValorICMS()) +
                 "\n " + this.getPedido().toString();
     }

@@ -56,7 +56,7 @@ public final class Produto {
         return "Produto: " + nome
                 + ", valor unitario: R$" + valorUnitario
                 + ", valor da ultima compra: R$" + valorUltimaCompra
-                + ", quantidade em estoque: " + this.estoque;
+                + ", quantidade em estoque: " + this.getEstoque().toString();
     }
 
 }

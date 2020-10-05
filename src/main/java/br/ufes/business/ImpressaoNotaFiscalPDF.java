@@ -13,6 +13,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -26,14 +27,21 @@ public class ImpressaoNotaFiscalPDF implements ImpressaoNotaFiscalBusiness{
 
     @Override
     public void imprimir(NotaFiscal nota) {
+        try {
+           File arquivo = new File("assets\\Notas\\Nota Fiscal "+Integer.toString(nota.getNumeroNota())+".pdf");
+              arquivo.createNewFile();
+          }catch (IOException e) {
+             System.out.println("Não Foi Possível Criar a nota em PDF!!!");
+             e.printStackTrace();
+          }
         Document document = new Document();
         try {
-            FileWriter file = new FileWriter("../assets/Notas/Nota Fiscal "+Integer.toString(nota.getNumeroNota())+".pdf");
+            FileWriter file = new FileWriter("assets\\Notas\\Nota Fiscal "+Integer.toString(nota.getNumeroNota())+".pdf");
         } catch (IOException e) {
             System.out.println("Não Foi Possível Imprimir a nota em PDF!!!");
         }
         try {
-            PdfWriter.getInstance(document, new FileOutputStream("../assets/Notas/Nota Fiscal "+Integer.toString(nota.getNumeroNota())+".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("assets\\Notas\\Nota Fiscal "+Integer.toString(nota.getNumeroNota())+".pdf"));
         } catch (FileNotFoundException ex) {
             System.out.println("Não Foi Possível Imprimir a nota em PDF!!! Arquivo Não encontrado!");
         } catch (DocumentException ex) {

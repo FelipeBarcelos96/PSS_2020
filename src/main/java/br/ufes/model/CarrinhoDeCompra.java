@@ -2,8 +2,6 @@ package br.ufes.model;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +44,7 @@ public final class CarrinhoDeCompra {
         return itemEncontrado;
     }
 
-    private void calcularValor() {
+    public void calcularValor() {
         valorTotal = 0;
         for (Item item : itens) {
             valorTotal += item.getValorItem();
