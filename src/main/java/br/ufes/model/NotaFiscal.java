@@ -7,24 +7,57 @@ package br.ufes.model;
 
 /**
  *
- * @author nandi
+ * @author Felipe e Nandi
  */
 public class NotaFiscal {
-    private int numeroDaNota;
+    private int numeroNota;
+    private double valorICMS;
+    private Pedido pedido;
+    private double valorTotal;
+    
+    public NotaFiscal(int numeroDaNota , Pedido pedido) {
+        setNumeroNota(numeroNota);
+        setPedido(pedido);
+    }     
+    
+    public int getNumeroNota() {
+        return numeroNota;
+    }
 
-    public NotaFiscal(int numeroDaNota) {
-        this.numeroDaNota = numeroDaNota;
+    private void setNumeroNota(int numeroDaNota) {
+        this.numeroNota = numeroDaNota;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    private void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public double getValorICMS() {
+        return valorICMS;
+    }
+
+    public void setValorICMS(double valorICMS) {
+        this.valorICMS = valorICMS;
+    }   
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
     
-    public int getNumeroDaNota() {
-        return numeroDaNota;
-    }
-
-    public void setNumeroDaNota(int numeroDaNota) {
-        this.numeroDaNota = numeroDaNota;
+    @Override
+    public String toString() {
+        return "Nota Fiscal Número: " + Integer.toString(this.getNumeroNota()) +
+                "Valor Total: R$" + Double.toString(this.getValorTotal()) +
+                ", Valor ICMS: R$" + Double.toString(this.getValorICMS()) +
+                "\n " + this.getPedido().toString();
     }
     
-    public double calcularICMS(double valor){
-        return valor;
-    }
 }

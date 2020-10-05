@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufes.model;
+package br.ufes.business;
+
+import br.ufes.model.NotaFiscal;
 
 /**
  *
- * @author Felipe
+ * @author Felps
  */
-public interface FormaPagamento {
+public interface ImpressaoNotaFiscalBusiness {
     
-    public void pagar(Pedido pedido);
-    public void setNumero(int numero);
-    @Override
-    public String toString();
-    
+    public void imprimir(NotaFiscal nota);
+        
 }

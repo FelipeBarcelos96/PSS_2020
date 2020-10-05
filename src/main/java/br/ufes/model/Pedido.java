@@ -23,6 +23,7 @@ public class Pedido {
         setCodPedido(codigo);
         setEstado("Em Aberto");
         setData(data);
+        this.dataValidade = this.calculaValidade();
         setCarrinho(carrinho);
         this.formaPagamento = null;
     }
@@ -31,7 +32,7 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public void setCodPedido(int codPedido) {
+    private void setCodPedido(int codPedido) {
         this.codPedido = codPedido;
     }
 
@@ -70,10 +71,30 @@ public class Pedido {
     public void setFormaPagamento(FormaPagamento formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
+    
+    private LocalDate calculaValidade(){
+        return this.getData().plusDays(5);
+    }
 
     @Override
     public String toString() {
-        return " Pedido de Número: " + Integer.toString(this.codPedido) + " , Estado: " + this.getEstado() + ", Data de Validade: " + this.getDataValidade().toString() + ", Data do Pedido: " + this.getData().toString() + ", Forma de Pagamento: " + this.getFormaPagamento().toString() + "/n Carrinho: " + this.getCarrinho().toString();
+        if(this.getFormaPagamento() == null) {
+            return " Pedido de Número: " +
+                    Integer.toString(this.codPedido) +
+                    " , Estado: " + this.getEstado() +
+                    ", Data de Validade: " +this.getDataValidade().toString() +
+                    ", Data do Pedido: " + this.getData().toString() +
+                    ", Forma de Pagamento: Sem Forma de Pagamento " +
+                    "\n Carrinho: " + this.getCarrinho().toString();
+        } else {
+            return " Pedido de Número: " +
+                    Integer.toString(this.codPedido) +
+                    " , Estado: " + this.getEstado() +
+                    ", Data de Validade: " +this.getDataValidade().toString() +
+                    ", Data do Pedido: " + this.getData().toString() +
+                    ", Forma de Pagamento: " + this.getFormaPagamento().toString() +
+                    "\n Carrinho: " + this.getCarrinho().toString();
+        }
     }
          
 }
