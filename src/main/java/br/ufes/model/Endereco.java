@@ -11,20 +11,20 @@ package br.ufes.model;
  */
 public class Endereco {
     
-    private String Cidade;
+    private String cidade;
     private String rua;
     private String numero;
     private String UF;
 
     public Endereco(String Cidade, String rua, String numero, String UF) {
-        this.Cidade = Cidade;
+        this.cidade = Cidade;
         this.rua = rua;
         this.numero = numero;
         this.UF = UF;
     }
 
     public String getCidade() {
-        return Cidade;
+        return cidade;
     }
 
     public String getRua() {
@@ -40,7 +40,7 @@ public class Endereco {
     }
 
     public void setCidade(String Cidade) {
-        this.Cidade = Cidade;
+        this.cidade = Cidade;
     }
 
     public void setRua(String rua) {
@@ -54,7 +54,10 @@ public class Endereco {
     public void setUF(String UF) {
         this.UF = UF;
     }
-    
-    
 
+    @Override
+    public String toString() {
+        return "R. " + this.getRua() + ", " + this.getNumero() + ", " + this.getCidade() + ", " + this.getUF();
+    }
+        
 }

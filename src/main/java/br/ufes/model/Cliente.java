@@ -1,5 +1,6 @@
 package br.ufes.model;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 public final class Cliente {
@@ -12,34 +13,33 @@ public final class Cliente {
 
     public Cliente(String nome, String CNPJOuCPF, LocalDate dataNascimento, Endereco endereco) {
         this.nome = nome;
-        this.CNPJOuCPF = CNPJOuCPF;
+        setCNPJOuCPF(CNPJOuCPF);
         this.dataNascimento = dataNascimento;
         this.endereco = endereco;
+        setPontuacao(0);
     }
 
     
     
-    public void setNome(String nome) {
+    private void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setCNPJOuCPF(String CNPJOuCPF) {
+    private void setCNPJOuCPF(String CNPJOuCPF) {
         this.CNPJOuCPF = CNPJOuCPF;
     }
 
-    public void setPontuacao(double pontuacao) {
+    private void setPontuacao(double pontuacao) {
         this.pontuacao = pontuacao;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    private void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-
-
     
     public String getNome() {
         return nome;
@@ -73,7 +73,10 @@ public final class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente: " + nome + ", CNPJ/CPF = " + CNPJOuCPF;
+        DecimalFormat df = new DecimalFormat("0.00");
+        return "Cliente: " + this.getNome() + ", CNPJ/CPF: " + this.getCNPJOuCPF() +
+                " Pontuação: "+ df.format(this.getPontuacao()) +
+                "\nEndereço: "+ this.getEndereco().toString();
     }
 
 }
