@@ -1,19 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufes.model;
 
-/**
- *
- * @author nandi
- */
-public interface Desconto {
-  
+public abstract class Desconto{
+    private String descricao;
+    double valor;
     
-    public boolean calculaRegra();
+    public abstract void calcularValor();
     
-    public double getValor();
+    public String getDescricao(){
+        return this.descricao;
+    }
     
+    public void setDescricao(String descricao){
+        this.descricao = descricao;
+    }
+    
+    public double getValor(){
+        return this.valor;
+    }
 }

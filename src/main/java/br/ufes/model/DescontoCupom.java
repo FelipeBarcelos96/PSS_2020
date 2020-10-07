@@ -1,34 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufes.model;
 
-/**
- *
- * @author nandi
- */
-public class DescontoCupom implements Desconto {
-    
-    public double valor;
-    
-    public DescontoCupom(double valor) {
-        this.valor = valor;
-    }
-    
-    
-    
-    @Override
-    public double getValor(){
-        return 0;
-        
-    }
-    
+public class DescontoCupom extends Desconto{
+    private String codigo;
+    private CarrinhoDeCompra carrinho;
 
-    @Override
-    public boolean calculaRegra() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public DescontoCupom(String codigo, CarrinhoDeCompra carrinho) {
+        this.codigo = codigo;
+        this.carrinho = carrinho;
+        this.setDescricao("Desconto Cupom: "+ codigo);
     }
     
+    @Override
+    public void calcularValor(){
+        MapCupomDesconto cupomDesconto = new MapCupomDesconto();
+        Double porcentagem = cupomDesconto.buscarDescontoCupom(this.codigo);
+        
+        if (porcentagem == null)
+            this.valor = 0;
+        else
+            this.valor = carrinho.getValorTotal() * porcentagem;
+    }
 }

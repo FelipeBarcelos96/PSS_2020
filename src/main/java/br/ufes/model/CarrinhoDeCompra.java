@@ -8,12 +8,12 @@ import java.util.Optional;
 
 public final class CarrinhoDeCompra {
 
-    protected Cliente cliente;
-    protected double valorTotal;
-    protected final double desconto = 0.05;
-    protected double valorDesconto;
-    protected double valorFinal;
-    protected final ArrayList<Item> itens = new ArrayList<>();
+    private Cliente cliente;
+    private double valorTotal;
+    private final double desconto = 0.05;
+    private double valorDesconto;
+    private double valorFinal;
+    private final ArrayList<Item> itens = new ArrayList<>();
 
     public CarrinhoDeCompra(Cliente cliente, Produto produto, double quantidade) {
         if (cliente == null) {

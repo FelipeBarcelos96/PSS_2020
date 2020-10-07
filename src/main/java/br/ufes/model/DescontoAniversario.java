@@ -1,34 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufes.model;
 
-/**
- *
- * @author nandi
- */
-public class DescontoAniversario implements Desconto{
-    
-    private double valor;
-    
-    public DescontoAniversario(double valor) {
-        this.valor = valor;
+import java.time.LocalDate;
+
+public class DescontoAniversario extends Desconto{
+    private CarrinhoDeCompra carrinho;
+    private double porcentagem;
+
+    public DescontoAniversario(CarrinhoDeCompra carrinho) {
+        this.carrinho = carrinho;
+        porcentagem = 0.05;
+        this.setDescricao("Desconto Aniversário");
     }
-    
-    
-    
-    @Override
-    public double getValor(){
-        return 0;
-        
-    }
-    
 
     @Override
-    public boolean calculaRegra() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void calcularValor() {
+        int clienteDia = carrinho.getCliente().getDataNascimento().getDayOfMonth();
+        int clienteMes = carrinho.getCliente().getDataNascimento().getMonthValue();
+        
+        int hojeDia = LocalDate.now().getDayOfMonth();
+        int hojeMes = LocalDate.now().getMonthValue();
+        
+        if( (clienteDia == hojeDia) && (clienteMes == hojeMes) )
+            this.valor = carrinho.getValorTotal() * porcentagem;
+        else
+            this.valor = 0;
     }
     
 }
