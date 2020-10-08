@@ -1,4 +1,4 @@
-package br.ufes.model;
+package br.ufes.business;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 public class MapCupomDesconto {
 
     // Map<codigo, porcentagem>
-    private Map<String, Double> cupons;
+    private HashMap<String, Double> cupons;
 
     public MapCupomDesconto() {
         cupons = new HashMap<>();

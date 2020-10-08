@@ -1,4 +1,4 @@
-package br.ufes.model;
+package br.ufes.business;
 
 import java.util.HashMap;
 import java.util.Map;

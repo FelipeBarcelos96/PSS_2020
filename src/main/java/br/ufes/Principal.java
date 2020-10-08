@@ -1,5 +1,8 @@
 package br.ufes;
 
+import br.ufes.business.AplicarDescontoAniversarioBusiness;
+import br.ufes.business.AplicarDescontoCupomBusiness;
+import br.ufes.business.AplicarDescontoPorTipoProdutoBusiness;
 import br.ufes.business.CalculadorICMS;
 import br.ufes.business.FinalizarCarrinhoBusiness;
 import br.ufes.business.GerarNotaFiscal;
@@ -27,14 +30,31 @@ public class Principal {
         try {
             Endereco endereco1 = new Endereco("Cidade dos Homens", "rua A", "666", "MG");
             Cliente cliente1 = new Cliente("Fulano", "123.123.123-81 ", LocalDate.now(), endereco1);
+            
 
-            Produto produto1 = new Produto("Caneta", 3.50, 10);
-            Produto produto2 = new Produto("copo", 4.75, 10);
+            Produto produto1 = new Produto("Caneta", "tipo1", 3.50, 10);
+            Produto produto2 = new Produto("blusa", "tipo3", 3.50, 10);
+            Produto produto3 = new Produto("copo", "semtipo", 4.75, 10);
 
             CarrinhoDeCompra carrinho1 = new CarrinhoDeCompra(cliente1, produto1, 5);
 
             try {
                 carrinho1.getColecaoItens().add(produto1, 1);
+            } catch (RuntimeException re) {
+                System.out.println(re.getMessage());
+            }
+            
+            AplicarDescontoCupomBusiness descontoCupom1 = new AplicarDescontoCupomBusiness("DESC10", carrinho1);
+            AplicarDescontoCupomBusiness descontoCupom2 = new AplicarDescontoCupomBusiness("XYZ", carrinho1);
+            
+            AplicarDescontoAniversarioBusiness descontoAniversario = new AplicarDescontoAniversarioBusiness(carrinho1);
+            AplicarDescontoPorTipoProdutoBusiness descontoProduto = new AplicarDescontoPorTipoProdutoBusiness(carrinho1);
+            
+            try {
+                descontoCupom1.aplicar();
+                descontoAniversario.aplicar();
+                descontoProduto.aplicar();
+                descontoCupom2.aplicar();
             } catch (RuntimeException re) {
                 System.out.println(re.getMessage());
             }

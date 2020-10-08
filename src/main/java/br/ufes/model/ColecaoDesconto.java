@@ -53,6 +53,10 @@ public class ColecaoDesconto {
     public List<Desconto> getListaDescontos() {
         return Collections.unmodifiableList(descontos);
     }
+    
+    public boolean isEmpty(){
+        return descontos.isEmpty();
+    }
 
     @Override
     public String toString() {

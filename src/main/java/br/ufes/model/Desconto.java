@@ -2,15 +2,20 @@ package br.ufes.model;
 
 import java.text.DecimalFormat;
 
-public abstract class Desconto {
+public class Desconto {
 
-    protected String descricao;
-    protected double valorDesconto;
-    protected double valorOrigem;
-    protected double porcentagem;
+    private String descricao;
+    private double valorDesconto;
+    private double valorOrigem;
+    private double porcentagem;
+
+    public Desconto(String descricao, double valorDesconto, double valorOrigem, double porcentagem) {
+        this.descricao = descricao;
+        this.valorDesconto = valorDesconto;
+        this.valorOrigem = valorOrigem;
+        this.porcentagem = porcentagem;
+    }
     
-    public abstract void calcular();
-
     public String getDescricao() {
         return this.descricao;
     }
@@ -22,15 +27,19 @@ public abstract class Desconto {
     public double getPorcentagem() {
         return porcentagem;
     }
-    
-    protected void setDescricao(String descricao) {
-        this.descricao = descricao;
+
+    public double getValorDesconto() {
+        return valorDesconto;
     }
-    
+
+    public double getValorOrigem() {
+        return valorOrigem;
+    }
+            
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("0.00");
-        return this.descricao + " - "+porcentagem+"% de R$ "+df.format(valorOrigem)+"- Total = R$ "+ df.format(valorDesconto);
+        return this.descricao + " - "+porcentagem+"% de R$ "+df.format(valorOrigem)+" - Valor do desconto = R$ "+ df.format(valorDesconto);
     }    
 
 }

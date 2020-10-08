@@ -8,7 +8,7 @@ public final class Produto {
     private String tipo;
     private final Estoque estoque;
 
-    public Produto(String nome, double valorUnitario, double estoque) {
+    public Produto(String nome, String tipo, double valorUnitario, double estoque) {
         this.nome = nome;
         setValorUnitario(valorUnitario);
 
