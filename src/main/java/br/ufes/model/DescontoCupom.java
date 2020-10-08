@@ -12,14 +12,16 @@ public class DescontoCupom extends Desconto {
     }
 
     @Override
-    public void calcularValor() {
+    public void calcular() {
         MapCupomDesconto cupomDesconto = new MapCupomDesconto();
-        Double porcentagem = cupomDesconto.buscarDescontoCupom(this.codigo);
+        Double porcentagemCupom = cupomDesconto.buscarDescontoCupom(this.codigo);
 
-        if (porcentagem == null) {
-            this.valor = 0;
+        if (porcentagemCupom == null) {
+            this.valorDesconto = 0;
         } else {
-            this.valor = carrinho.getValorTotal() * porcentagem;
+            this.porcentagem = porcentagemCupom;
+            this.valorOrigem = carrinho.getValorTotal();
+            this.valorDesconto = valorOrigem * (porcentagem/100);
         }
     }
 }

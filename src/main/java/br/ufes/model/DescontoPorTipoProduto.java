@@ -10,15 +10,17 @@ public class DescontoPorTipoProduto extends Desconto {
     }
 
     @Override
-    public void calcularValor() {
+    public void calcular() {
         MapTipoDesconto descontoTipo = new MapTipoDesconto();
         String tipo = item.getProduto().getTipo();
-        Double porcentagem = descontoTipo.buscarDescontoPorTipo(tipo);
+        Double porcentagemDoTipo = descontoTipo.buscarDescontoPorTipo(tipo);
 
-        if (porcentagem == null) {
-            this.valor = 0;
-        } else {
-            this.valor = item.getValorItem() * porcentagem;
+        if (porcentagemDoTipo == null) {
+            this.valorDesconto = 0;
+        }else {
+            this.porcentagem = porcentagemDoTipo;
+            this.valorOrigem = item.getValorItem();
+            this.valorDesconto = valorOrigem * (porcentagem/100);
         }
     }
 }

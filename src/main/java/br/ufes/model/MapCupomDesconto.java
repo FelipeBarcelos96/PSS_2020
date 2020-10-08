@@ -10,9 +10,9 @@ public class MapCupomDesconto {
 
     public MapCupomDesconto() {
         cupons = new HashMap<>();
-        cupons.put("DESC10", 0.1);
-        cupons.put("DESC15", 0.15);
-        cupons.put("DESC05", 0.05);
+        cupons.put("DESC10", 10.0);
+        cupons.put("DESC15", 15.0);
+        cupons.put("DESC05", 5.0);
     }
 
     public double buscarDescontoCupom(String codigo) {

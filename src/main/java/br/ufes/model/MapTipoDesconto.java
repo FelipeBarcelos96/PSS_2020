@@ -10,11 +10,11 @@ public class MapTipoDesconto {
 
     public MapTipoDesconto() {
         descontoTipo = new HashMap<>();
-        descontoTipo.put("tipo1", 0.08);
-        descontoTipo.put("tipo2", 0.10);
-        descontoTipo.put("tipo3", 0.05);
-        descontoTipo.put("tipo4", 0.12);
-        descontoTipo.put("tipo5", 0.07);
+        descontoTipo.put("tipo1", 8.0);
+        descontoTipo.put("tipo2", 10.0);
+        descontoTipo.put("tipo3", 5.0);
+        descontoTipo.put("tipo4", 12.0);
+        descontoTipo.put("tipo5", 7.0);
     }
 
     public double buscarDescontoPorTipo(String tipo) {
