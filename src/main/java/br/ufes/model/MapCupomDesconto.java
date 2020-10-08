@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MapCupomDesconto {
+
     // Map<codigo, porcentagem>
     private Map<String, Double> cupons;
 
@@ -13,9 +14,8 @@ public class MapCupomDesconto {
         cupons.put("DESC15", 0.15);
         cupons.put("DESC05", 0.05);
     }
-    
-    public double buscarDescontoCupom(String codigo){
+
+    public double buscarDescontoCupom(String codigo) {
         return cupons.get(codigo);
     }
 }
-

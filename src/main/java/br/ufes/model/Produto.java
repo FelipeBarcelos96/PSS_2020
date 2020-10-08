@@ -1,6 +1,5 @@
 package br.ufes.model;
 
-
 public final class Produto {
 
     private String nome;
@@ -12,10 +11,10 @@ public final class Produto {
     public Produto(String nome, double valorUnitario, double estoque) {
         this.nome = nome;
         setValorUnitario(valorUnitario);
-        
+
         Estoque estoque1 = new Estoque(estoque);
         this.estoque = estoque1;
-        
+
     }
 
     public String getNome() {
@@ -25,7 +24,7 @@ public final class Produto {
     public double getValorUnitario() {
         return valorUnitario;
     }
-    
+
     public Estoque getEstoque() {
         return estoque;
     }
@@ -33,7 +32,6 @@ public final class Produto {
     public double getValorUltimaCompra() {
         return valorUltimaCompra;
     }
-
 
     public void setNome(String nome) {
         if (nome == null) {
@@ -50,12 +48,10 @@ public final class Produto {
         this.valorUnitario = valorUnitario;
     }
 
-   
-
     public String getTipo() {
         return tipo;
     }
-    
+
     @Override
     public String toString() {
         return "Produto: " + nome

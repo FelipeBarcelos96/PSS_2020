@@ -12,7 +12,7 @@ import br.ufes.model.NotaFiscal;
  * @author Felps
  */
 public interface ImpressaoNotaFiscalBusiness {
-    
+
     public void imprimir(NotaFiscal nota);
-        
+
 }

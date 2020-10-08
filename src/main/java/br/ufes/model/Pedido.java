@@ -12,14 +12,15 @@ import java.time.LocalDate;
  * @author Felipe
  */
 public class Pedido {
+
     private String estado;
     private int codPedido;
     private LocalDate dataValidade;
     private LocalDate data;
     private CarrinhoDeCompra carrinho;
     private FormaPagamento formaPagamento;
-    
-    public Pedido(CarrinhoDeCompra carrinho, LocalDate data, int codigo){
+
+    public Pedido(CarrinhoDeCompra carrinho, LocalDate data, int codigo) {
         setCodPedido(codigo);
         setEstado("Em Aberto");
         setData(data);
@@ -71,30 +72,30 @@ public class Pedido {
     public void setFormaPagamento(FormaPagamento formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
-    
-    private LocalDate calculaValidade(){
+
+    private LocalDate calculaValidade() {
         return this.getData().plusDays(5);
     }
 
     @Override
     public String toString() {
-        if(this.getFormaPagamento() == null) {
-            return " Pedido de Número: " +
-                    Integer.toString(this.codPedido) +
-                    " , Estado: " + this.getEstado() +
-                    ", Data do Pedido: " + this.getData().toString() +
-                    ", Data de Validade: " +this.getDataValidade().toString() +                    
-                    ", Forma de Pagamento: Sem Forma de Pagamento " +
-                    "\n Carrinho: " + this.getCarrinho().toString();
+        if (this.getFormaPagamento() == null) {
+            return " Pedido de Número: "
+                    + Integer.toString(this.codPedido)
+                    + " , Estado: " + this.getEstado()
+                    + ", Data do Pedido: " + this.getData().toString()
+                    + ", Data de Validade: " + this.getDataValidade().toString()
+                    + ", Forma de Pagamento: Sem Forma de Pagamento "
+                    + "\n Carrinho: " + this.getCarrinho().toString();
         } else {
-            return " Pedido de Número: " +
-                    Integer.toString(this.codPedido) +
-                    " , Estado: " + this.getEstado() +
-                    ", Data do Pedido: " + this.getData().toString() +
-                    ", Data de Validade: " +this.getDataValidade().toString() +                    
-                    ", Forma de Pagamento: " + this.getFormaPagamento().toString() +
-                    "\n" + this.getCarrinho().toString();
+            return " Pedido de Número: "
+                    + Integer.toString(this.codPedido)
+                    + " , Estado: " + this.getEstado()
+                    + ", Data do Pedido: " + this.getData().toString()
+                    + ", Data de Validade: " + this.getDataValidade().toString()
+                    + ", Forma de Pagamento: " + this.getFormaPagamento().toString()
+                    + "\n" + this.getCarrinho().toString();
         }
     }
-         
+
 }

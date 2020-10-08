@@ -12,13 +12,13 @@ import br.ufes.model.NotaFiscal;
  * @author Felps
  */
 public class CalculadorICMS {
-    
-    public CalculadorICMS(){
-        
+
+    public CalculadorICMS() {
+
     }
-    
-    public void calcularICMS(NotaFiscal nota, double aliquota){
-        nota.setValorICMS(nota.getPedido().getCarrinho().getValorFinal()*(aliquota/100));
+
+    public void calcularICMS(NotaFiscal nota, double aliquota) {
+        nota.setValorICMS(nota.getPedido().getCarrinho().getValorFinal() * (aliquota / 100));
         nota.setValorTotal(nota.getPedido().getCarrinho().getValorFinal() + nota.getValorICMS());
     }
 }

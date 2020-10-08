@@ -23,41 +23,41 @@ import java.io.FileOutputStream;
  *
  * @author Felps
  */
-public class ImpressaoNotaFiscalPDF implements ImpressaoNotaFiscalBusiness{
+public class ImpressaoNotaFiscalPDF implements ImpressaoNotaFiscalBusiness {
 
     @Override
     public void imprimir(NotaFiscal nota) {
         try {
-           File arquivo = new File("assets\\Notas\\Nota Fiscal "+Integer.toString(nota.getNumeroNota())+".pdf");
-              arquivo.createNewFile();
-          }catch (IOException e) {
-             System.out.println("Não Foi Possível Criar a nota em PDF!!!");
-             e.printStackTrace();
-          }
+            File arquivo = new File("assets\\Notas\\Nota Fiscal " + Integer.toString(nota.getNumeroNota()) + ".pdf");
+            arquivo.createNewFile();
+        } catch (IOException e) {
+            System.out.println("Não Foi Possível Criar a nota em PDF!!!");
+            e.printStackTrace();
+        }
         Document document = new Document();
         try {
-            FileWriter file = new FileWriter("assets\\Notas\\Nota Fiscal "+Integer.toString(nota.getNumeroNota())+".pdf");
+            FileWriter file = new FileWriter("assets\\Notas\\Nota Fiscal " + Integer.toString(nota.getNumeroNota()) + ".pdf");
         } catch (IOException e) {
             System.out.println("Não Foi Possível Imprimir a nota em PDF!!!");
         }
         try {
-            PdfWriter.getInstance(document, new FileOutputStream("assets\\Notas\\Nota Fiscal "+Integer.toString(nota.getNumeroNota())+".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("assets\\Notas\\Nota Fiscal " + Integer.toString(nota.getNumeroNota()) + ".pdf"));
         } catch (FileNotFoundException ex) {
             System.out.println("Não Foi Possível Imprimir a nota em PDF!!! Arquivo Não encontrado!");
         } catch (DocumentException ex) {
             System.out.println("Não Foi Possível Imprimir a nota em PDF!!! Documento não encontrado!");
         }
- 
-       document.open();
-       Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-       Chunk chunk = new Chunk(nota.toString(), font);
- 
+
+        document.open();
+        Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+        Chunk chunk = new Chunk(nota.toString(), font);
+
         try {
             document.add(chunk);
         } catch (DocumentException ex) {
-           System.out.println("Não Foi Possível preencher a nota em PDF!!! Documento não encontrado!");
+            System.out.println("Não Foi Possível preencher a nota em PDF!!! Documento não encontrado!");
         }
-       document.close();
+        document.close();
     }
-    
+
 }

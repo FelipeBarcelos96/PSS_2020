@@ -10,86 +10,62 @@ public final class CarrinhoDeCompra {
 
     private Cliente cliente;
     private double valorTotal;
-    private final double desconto = 0.05;
+    private ColecaoDesconto colecaoDescontos;
+    private ColecaoItem colecaoItens;
     private double valorDesconto;
     private double valorFinal;
-    private final ArrayList<Item> itens = new ArrayList<>();
 
     public CarrinhoDeCompra(Cliente cliente, Produto produto, double quantidade) {
         if (cliente == null) {
             throw new RuntimeException("Informe um cliente válido");
         }
-        this.cliente = cliente;        
-        this.addItem(produto, quantidade);
+
+        colecaoItens = new ColecaoItem();
+        colecaoDescontos = new ColecaoDesconto();
+
+        this.cliente = cliente;
+        colecaoItens.add(produto, quantidade);
     }
 
-    public final void addItem(Produto produto, double quantidade) {
-        if (quantidade <= 0) {
-            throw new RuntimeException("Informe uma quantidade válida!");
-        }
-        if (this.getItemPorNome(produto.getNome()).isPresent()) {
-            throw new RuntimeException("Produto já existe! Remova-o ou altere a quantidade");
-        }
-        itens.add(new Item(produto, quantidade));
-        calcularValor();
+    private void calcularValorTotal() {
+        this.valorTotal = colecaoItens.calcularValorTotal();
     }
 
-    protected Optional<Item> getItemPorNome(String nomeProduto) {
-        Optional<Item> itemEncontrado = Optional.empty();
-        for (Item item : itens) {
-            if (item.getProduto().getNome().toLowerCase().equals(nomeProduto.toLowerCase())) {
-                itemEncontrado = Optional.of(item);
-            }
-        }
-        return itemEncontrado;
+    private void calcularValorDesconto() {
+        this.valorDesconto = colecaoDescontos.calcularTotalDesconto();
     }
 
-    public void calcularValor() {
-        valorTotal = 0;
-        for (Item item : itens) {
-            valorTotal += item.getValorItem();
-        }
-        aplicarDesconto();
+    private void calcularValorFinal() {
+        calcularValorTotal();
+        calcularValorDesconto();
+        this.valorFinal = this.valorTotal - this.valorDesconto;
     }
 
     public double getValorDesconto() {
+        calcularValorDesconto();
         return valorDesconto;
     }
 
-    private void aplicarDesconto() {
-        this.valorDesconto = valorTotal * desconto;
-        this.valorFinal = valorTotal - valorDesconto;
-    }
-
-    public void removerItem(String nomeProduto) {
-
-        Optional<Item> produtoEncontrado = getItemPorNome(nomeProduto);
-        if (!produtoEncontrado.isPresent()) {
-            throw new RuntimeException("Item " + nomeProduto + " não encontrado");
-        }
-
-        itens.remove(produtoEncontrado.get());
-        calcularValor();
-    }
-
     public double getValorTotal() {
+        calcularValorTotal();
         return valorTotal;
     }
 
-    public double getDesconto() {
-        return desconto;
+    public double getValorFinal() {
+        calcularValorFinal();
+        return valorFinal;
     }
 
-    public double getValorFinal() {
-        return valorFinal;
+    public ColecaoDesconto getColecaoDescontos() {
+        return colecaoDescontos;
+    }
+
+    public ColecaoItem getColecaoItens() {
+        return colecaoItens;
     }
 
     public Cliente getCliente() {
         return cliente;
-    }
-
-    public List<Item> getItens() {
-        return Collections.unmodifiableList(itens);
     }
 
     @Override
@@ -98,12 +74,10 @@ public final class CarrinhoDeCompra {
         String retorno = "--------------- Carrinho de Compras --------------\n";
         retorno += "Dados do Cliente: " + this.getCliente().toString() + "\n";
         retorno += "Valor sem desconto: R$ " + df.format(getValorTotal()) + "\n";
-        retorno += "Desconto: R$" + df.format(valorDesconto) + " (" + desconto * 100 + "%)\n";
+        retorno += "Desconto: R$" + df.format(getValorDesconto()) + "\n";
         retorno += "Valor a pagar: R$" + df.format(valorFinal) + "\n";
         retorno += "Itens do pedido:\n";
-        for (Item item : itens) {
-            retorno += "\t- " + item.toString() + "\n";
-        }
+        retorno += colecaoItens;
 
         return retorno;
     }

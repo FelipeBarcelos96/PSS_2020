@@ -10,10 +10,12 @@ package br.ufes.model;
  * @author Felipe
  */
 public interface FormaPagamento {
-    
+
     public void pagar(Pedido pedido);
+
     public void setNumero(int numero);
+
     @Override
     public String toString();
-    
+
 }

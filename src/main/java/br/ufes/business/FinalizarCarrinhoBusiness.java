@@ -15,16 +15,16 @@ import java.util.Random;
  * @author Felps
  */
 public class FinalizarCarrinhoBusiness {
-    
-    public FinalizarCarrinhoBusiness(){
-        
+
+    public FinalizarCarrinhoBusiness() {
+
     }
-    
-    public Pedido fechar(CarrinhoDeCompra carrinhoDeCompra){
+
+    public Pedido fechar(CarrinhoDeCompra carrinhoDeCompra) {
         Random random = new Random();
-        
-        carrinhoDeCompra.getCliente().addPontuacao(carrinhoDeCompra.getValorDesconto()*0.02);
-        
+
+        carrinhoDeCompra.getCliente().addPontuacao(carrinhoDeCompra.getValorDesconto() * 0.02);
+
         return new Pedido(carrinhoDeCompra, LocalDate.now(), random.nextInt(9999));
     }
 }

@@ -13,16 +13,17 @@ import br.ufes.model.Pedido;
  * @author Felps
  */
 public class RemoverItemPedidoBusiness {
-    public RemoverItemPedidoBusiness(){
-        
+
+    public RemoverItemPedidoBusiness() {
+
     }
-    
-    public void remover(Pedido pedido, String nomeProduto){
-        for(Item item : pedido.getCarrinho().getItens()){
-            if(item.getProduto().getNome().toUpperCase().equals(nomeProduto.toUpperCase())){
-                pedido.getCarrinho().removerItem(nomeProduto);
+
+    public void remover(Pedido pedido, String nomeProduto) {
+        for (Item item : pedido.getCarrinho().getColecaoItens().getListaItens()) {
+            if (item.getProduto().getNome().toUpperCase().equals(nomeProduto.toUpperCase())) {
+                pedido.getCarrinho().getColecaoItens().remover(nomeProduto);
             }
         }
     }
-    
+
 }

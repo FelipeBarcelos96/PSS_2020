@@ -10,7 +10,7 @@ package br.ufes.model;
  * @author nandi
  */
 public class Endereco {
-    
+
     private String cidade;
     private String rua;
     private String numero;
@@ -59,5 +59,5 @@ public class Endereco {
     public String toString() {
         return "R. " + this.getRua() + ", " + this.getNumero() + ", " + this.getCidade() + ", " + this.getUF();
     }
-        
+
 }

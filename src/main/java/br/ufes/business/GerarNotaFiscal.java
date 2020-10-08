@@ -14,9 +14,10 @@ import java.util.Random;
  * @author Felps
  */
 public class GerarNotaFiscal {
+
     private Pedido pedido;
-    
-    public GerarNotaFiscal(Pedido pedido){
+
+    public GerarNotaFiscal(Pedido pedido) {
         setPedido(pedido);
     }
 
@@ -26,9 +27,9 @@ public class GerarNotaFiscal {
 
     private void setPedido(Pedido pedido) {
         this.pedido = pedido;
-    }        
-    
-    public NotaFiscal gerar(){
+    }
+
+    public NotaFiscal gerar() {
         Random random = new Random();
         return new NotaFiscal(random.nextInt(9999), this.getPedido());
     }

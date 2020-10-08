@@ -4,8 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MapTipoDesconto {
+
     // Map<tipo, porcentagem>
-    private Map<String,Double> descontoTipo;
+    private Map<String, Double> descontoTipo;
 
     public MapTipoDesconto() {
         descontoTipo = new HashMap<>();
@@ -15,10 +16,9 @@ public class MapTipoDesconto {
         descontoTipo.put("tipo4", 0.12);
         descontoTipo.put("tipo5", 0.07);
     }
-    
-    public double buscarDescontoPorTipo(String tipo){
+
+    public double buscarDescontoPorTipo(String tipo) {
         return descontoTipo.get(tipo);
     }
-    
-    
+
 }

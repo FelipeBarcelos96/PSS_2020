@@ -10,7 +10,7 @@ public final class Item {
     protected Produto produto;
 
     public Item(Produto produto, double quantidadeAdquirida) {
-     
+
         if (!produto.getEstoque().estoqueDisponivel(quantidadeAdquirida)) {
             throw new RuntimeException("Estoque indisponível para atender a quantidade solicitada (" + quantidadeAdquirida
                     + ") para o produto " + produto.getNome()

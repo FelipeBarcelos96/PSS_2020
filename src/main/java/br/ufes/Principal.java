@@ -28,15 +28,16 @@ public class Principal {
             Endereco endereco1 = new Endereco("Cidade dos Homens", "rua A", "666", "MG");
             Cliente cliente1 = new Cliente("Fulano", "123.123.123-81 ", LocalDate.now(), endereco1);
 
-            Produto produto1 = new Produto("Caneta", 3.50, 3);
+            Produto produto1 = new Produto("Caneta", 3.50, 10);
+            Produto produto2 = new Produto("copo", 4.75, 10);
 
-            CarrinhoDeCompra carrinho1 = new CarrinhoDeCompra(cliente1,
-                    produto1, 5
-            );
+            CarrinhoDeCompra carrinho1 = new CarrinhoDeCompra(cliente1, produto1, 5);
 
-            carrinho1.addItem(produto1, 10);
-
-            carrinho1.calcularValor();
+            try {
+                carrinho1.getColecaoItens().add(produto1, 1);
+            } catch (RuntimeException re) {
+                System.out.println(re.getMessage());
+            }
 
             FinalizarCarrinhoBusiness finalizar = new FinalizarCarrinhoBusiness();
             Pedido pedido1 = finalizar.fechar(carrinho1);
@@ -60,7 +61,6 @@ public class Principal {
 
         } catch (RuntimeException rte) {
             System.err.println("Falha: " + rte.getMessage());
-
         }
 
     }

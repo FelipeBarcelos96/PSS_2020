@@ -19,8 +19,6 @@ public final class Cliente {
         setPontuacao(0);
     }
 
-    
-    
     private void setNome(String nome) {
         this.nome = nome;
     }
@@ -40,7 +38,7 @@ public final class Cliente {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
+
     public String getNome() {
         return nome;
     }
@@ -61,22 +59,20 @@ public final class Cliente {
         return endereco;
     }
 
-    public void addPontuacao(double pontuacao)
-    {
+    public void addPontuacao(double pontuacao) {
         this.pontuacao += pontuacao;
     }
-    
-    public void removerPontuacao(double pontuacao)
-    {
+
+    public void removerPontuacao(double pontuacao) {
         this.pontuacao -= pontuacao;
     }
 
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("0.00");
-        return "Cliente: " + this.getNome() + ", CNPJ/CPF: " + this.getCNPJOuCPF() +
-                " Pontuação: "+ df.format(this.getPontuacao()) +
-                "\nEndereço: "+ this.getEndereco().toString();
+        return "Cliente: " + this.getNome() + ", CNPJ/CPF: " + this.getCNPJOuCPF()
+                + " Pontuação: " + df.format(this.getPontuacao())
+                + "\nEndereço: " + this.getEndereco().toString();
     }
 
 }

@@ -9,23 +9,23 @@ package br.ufes.model;
  *
  * @author Felipe
  */
-public class PagamentoCredito implements FormaPagamento{
+public class PagamentoCredito implements FormaPagamento {
 
     private int numero;
-  
-    public PagamentoCredito(int numero){
+
+    public PagamentoCredito(int numero) {
         setNumero(numero);
     }
 
     @Override
     public void pagar(Pedido pedido) {
-       try{
-           if(pedido.getEstado().toUpperCase().equals("PAGO") ){
-               pedido.setEstado("PAGO");
-           }
-       }catch(Exception e){
-           System.out.println("Erro durante o Pagamento!");
-       }
+        try {
+            if (pedido.getEstado().toUpperCase().equals("PAGO")) {
+                pedido.setEstado("PAGO");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro durante o Pagamento!");
+        }
     }
 
     public int getNumero() {
@@ -35,10 +35,10 @@ public class PagamentoCredito implements FormaPagamento{
     public void setNumero(int numero) {
         this.numero = numero;
     }
-    
+
     @Override
     public String toString() {
-        return " Cartão de Crédito, Número do Cartão: "+Integer.toString(this.getNumero());
+        return " Cartão de Crédito, Número do Cartão: " + Integer.toString(this.getNumero());
     }
-       
+
 }

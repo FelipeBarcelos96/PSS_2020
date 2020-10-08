@@ -13,10 +13,11 @@ import java.time.LocalDate;
  * @author Felps
  */
 public class ValidaDataVencimento {
+
     private Pedido pedido;
-    
-    public ValidaDataVencimento(Pedido pedido){
-        setPedido(pedido);        
+
+    public ValidaDataVencimento(Pedido pedido) {
+        setPedido(pedido);
     }
 
     public Pedido getPedido() {
@@ -26,16 +27,16 @@ public class ValidaDataVencimento {
     private void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
-    
-    public boolean verificaValidade(Pedido pedido){
-        if(LocalDate.now().isAfter(pedido.getDataValidade())){
-            if(!"PAGO".equals(pedido.getEstado().toUpperCase())){
+
+    public boolean verificaValidade(Pedido pedido) {
+        if (LocalDate.now().isAfter(pedido.getDataValidade())) {
+            if (!"PAGO".equals(pedido.getEstado().toUpperCase())) {
                 this.getPedido().setEstado("VENCIDO");
                 return false;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return true;
         }
     }

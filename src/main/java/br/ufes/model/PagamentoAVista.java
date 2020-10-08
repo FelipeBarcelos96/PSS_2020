@@ -11,20 +11,19 @@ package br.ufes.model;
  */
 public class PagamentoAVista implements FormaPagamento {
 
-    
     public PagamentoAVista() {
-        
+
     }
 
     @Override
     public void pagar(Pedido pedido) {
-       try{
-           if(pedido.getEstado().toUpperCase().equals("PAGO") ){
-               pedido.setEstado("PAGO");
-           }
-       }catch(Exception e){
-           System.out.println("Erro durante o Pagamento!");
-       }
+        try {
+            if (pedido.getEstado().toUpperCase().equals("PAGO")) {
+                pedido.setEstado("PAGO");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro durante o Pagamento!");
+        }
     }
 
     @Override
@@ -36,5 +35,5 @@ public class PagamentoAVista implements FormaPagamento {
     public void setNumero(int numero) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-           
+
 }
