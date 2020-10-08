@@ -39,7 +39,8 @@ public class Principal {
             CarrinhoDeCompra carrinho1 = new CarrinhoDeCompra(cliente1, produto1, 5);
 
             try {
-                carrinho1.getColecaoItens().add(produto1, 1);
+                carrinho1.getColecaoItens().add(produto2, 2);
+                carrinho1.getColecaoItens().add(produto3, 3);
             } catch (RuntimeException re) {
                 System.out.println(re.getMessage());
             }

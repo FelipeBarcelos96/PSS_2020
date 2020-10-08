@@ -10,6 +10,7 @@ public final class Produto {
 
     public Produto(String nome, String tipo, double valorUnitario, double estoque) {
         this.nome = nome;
+        this.tipo = tipo;
         setValorUnitario(valorUnitario);
 
         Estoque estoque1 = new Estoque(estoque);

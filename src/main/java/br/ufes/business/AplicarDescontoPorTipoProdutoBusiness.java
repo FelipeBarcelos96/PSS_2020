@@ -15,9 +15,9 @@ public class AplicarDescontoPorTipoProdutoBusiness{
     
     public void aplicar() {
         MapTipoDesconto descontoTipo = new MapTipoDesconto();
-        
+        double porcentagem;
         for(Item item : carrinho.getColecaoItens().getListaItens()){
-            double porcentagem = 0;
+            porcentagem = 0;
             try{
                  porcentagem = descontoTipo.buscarDescontoPorTipo(item.getProduto().getTipo());
             }catch(Exception ex){
