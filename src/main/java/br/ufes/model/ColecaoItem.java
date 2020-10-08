@@ -18,14 +18,20 @@ public class ColecaoItem {
             throw new RuntimeException("Informe uma quantidade válida!");
         }
 
-        if (!getItemPorNome(produto.getNome()).isEmpty()) {
+        if (!buscarItemPorNome(produto.getNome()).isEmpty()) {
             throw new RuntimeException("O Produto '" + produto.getNome() + "' já existe! Remova-o ou altere a quantidade");
         }
 
         itens.add(new Item(produto, quantidade));
     }
+    
+    public void remover(String nomeProduto) {
+        Optional<Item> item = buscarItemPorNome(nomeProduto);
+        item.orElseThrow(() -> new RuntimeException("Não foi possível remover o produto " + nomeProduto + "! Produto não encontrado"));
+        item.ifPresent(i -> itens.remove(i));
+    }
 
-    public Optional<Item> getItemPorNome(String nomeProduto) {
+    public Optional<Item> buscarItemPorNome(String nomeProduto) {
         Optional<Item> itemEncontrado = Optional.empty();
         for (Item item : itens) {
             if (item.getProduto().getNome().equalsIgnoreCase(nomeProduto)) {
@@ -36,16 +42,6 @@ public class ColecaoItem {
         return itemEncontrado;
     }
 
-    public void remover(String nomeProduto) {
-        Optional<Item> item = getItemPorNome(nomeProduto);
-        item.orElseThrow(() -> new RuntimeException("Não foi possível remover o produto " + nomeProduto + "! Produto não encontrado"));
-        item.ifPresent(i -> itens.remove(i));
-    }
-
-    public List<Item> getListaItens() {
-        return Collections.unmodifiableList(itens);
-    }
-
     public double calcularValorTotal() {
         double total = 0;
 
@@ -54,6 +50,10 @@ public class ColecaoItem {
         }
 
         return total;
+    }
+    
+    public List<Item> getListaItens() {
+        return Collections.unmodifiableList(itens);
     }
 
     @Override

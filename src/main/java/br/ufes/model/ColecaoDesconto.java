@@ -3,6 +3,7 @@ package br.ufes.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class ColecaoDesconto {
 
@@ -13,21 +14,32 @@ public class ColecaoDesconto {
     }
 
     public void add(Desconto desconto) {
-        if (desconto.getValor() > 0) {
-            descontos.add(desconto);
+        if (!buscarDescontoPorDescricao(desconto.getDescricao()).isEmpty()) {
+            throw new RuntimeException("O desconto:  '" + desconto.getDescricao()+ "' já foi aplicado!");
         }
+
+        descontos.add(desconto);
+    }
+    
+    public void remover(String descricao) {
+        Optional<Desconto> desconto = buscarDescontoPorDescricao(descricao);
+        desconto.orElseThrow(() -> new RuntimeException("Não foi possível remover o desconto '" + descricao + "'! Desconto não encontrado"));
+        desconto.ifPresent(i -> descontos.remove(i));
     }
 
-    public Desconto buscar(String descricao) {
-        for (Desconto d : descontos) {
-            if (d.getDescricao().equalsIgnoreCase(descricao)) {
-                return d;
+
+    public Optional<Desconto> buscarDescontoPorDescricao(String descricao){
+        Optional<Desconto> descontoEncontrado = Optional.empty();
+        
+        for(Desconto desconto : descontos) {
+            if (desconto.getDescricao().equalsIgnoreCase(descricao)) {
+                descontoEncontrado = Optional.of(desconto);
             }
         }
-
-        return null;
+        
+        return descontoEncontrado;
     }
-
+    
     public double calcularTotalDesconto() {
         double total = 0;
 
@@ -42,4 +54,13 @@ public class ColecaoDesconto {
         return Collections.unmodifiableList(descontos);
     }
 
+    @Override
+    public String toString() {
+        String resultado = "";
+        for (Desconto desconto : descontos) {
+            resultado += desconto.toString() + "\n";
+        }
+
+        return resultado;
+    }
 }
