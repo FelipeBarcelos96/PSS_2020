@@ -78,7 +78,7 @@ public final class CarrinhoDeCompra {
         retorno += "Valor a pagar: R$" + df.format(valorFinal) + "\n";
         retorno += "Itens do pedido:\n";
         retorno += colecaoItens;
-        if(!colecaoDescontos.isEmpty()){
+        if (!colecaoDescontos.isEmpty()) {
             retorno += "Descontos aplicados:\n";
             retorno += colecaoDescontos;
         }

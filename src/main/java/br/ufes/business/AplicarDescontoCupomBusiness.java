@@ -6,24 +6,17 @@ import br.ufes.model.Desconto;
 
 public class AplicarDescontoCupomBusiness {
 
-    private String codigo;
     private CarrinhoDeCompra carrinho;
 
-    public AplicarDescontoCupomBusiness(String codigo, CarrinhoDeCompra carrinho) {
-        this.codigo = codigo;
+    public AplicarDescontoCupomBusiness(CarrinhoDeCompra carrinho) {
         this.carrinho = carrinho;
     }
 
-    public void aplicar() {
+    public void aplicar(String codigo) {
         MapCupomDesconto cupomDesconto = new MapCupomDesconto();
         Double porcentagem = 0.0;
-        
-        try{
-            porcentagem = cupomDesconto.buscarDescontoCupom(this.codigo);
-        }catch(Exception ex){
-            throw new RuntimeException("O cupom '" + codigo + "' não é válido! ");
-        }
-            
+
+        porcentagem = cupomDesconto.buscarDescontoCupom(codigo);
 
         String descricao = "Desconto Cupom: " + codigo;
         double valorOrigem = carrinho.getValorTotal();

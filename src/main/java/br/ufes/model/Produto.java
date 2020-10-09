@@ -8,13 +8,13 @@ public final class Produto {
     private String tipo;
     private final Estoque estoque;
 
-    public Produto(String nome, String tipo, double valorUnitario, double estoque) {
+    public Produto(String nome, String tipo, double valorUnitario, double quantidadeEstoque) {
         this.nome = nome;
         this.tipo = tipo;
         setValorUnitario(valorUnitario);
 
-        Estoque estoque1 = new Estoque(estoque);
-        this.estoque = estoque1;
+        Estoque estoque = new Estoque(quantidadeEstoque);
+        this.estoque = estoque;
 
     }
 
@@ -35,15 +35,15 @@ public final class Produto {
     }
 
     public void setNome(String nome) {
-        if (nome == null) {
-            throw new RuntimeException("Nome inválido: " + nome);
+        if (nome == null || nome == "") {
+            throw new RuntimeException("Nome inválido! O nome não pode ser vazio ou nulo.");
         }
         this.nome = nome;
     }
 
     public void setValorUnitario(double valorUnitario) {
         if (valorUnitario <= 0) {
-            throw new RuntimeException("Valor inválido: " + valorUnitario);
+            throw new RuntimeException("Valor inválido! O valor não pode ser nulo ou negativo.");
         }
         this.valorUltimaCompra = this.valorUnitario;
         this.valorUnitario = valorUnitario;

@@ -1,9 +1,12 @@
 package br.ufes.model;
 
+import excecoes.QuantidadeNulaException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ColecaoItem {
 
@@ -14,22 +17,23 @@ public class ColecaoItem {
     }
 
     public void add(Produto produto, double quantidade) {
-        if (quantidade <= 0) {
-            throw new RuntimeException("Informe uma quantidade válida!");
-        }
-
         if (!buscarItemPorNome(produto.getNome()).isEmpty()) {
             throw new RuntimeException("O Produto '" + produto.getNome() + "' já existe! Remova-o ou altere a quantidade");
         }
 
-        itens.add(new Item(produto, quantidade));
+        try {
+            itens.add(new Item(produto, quantidade));
+        } catch (QuantidadeNulaException ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
     }
-    
+
     public void remover(String nomeProduto) {
         Optional<Item> item = buscarItemPorNome(nomeProduto);
         item.orElseThrow(() -> new RuntimeException("Não foi possível remover o produto " + nomeProduto + "! Produto não encontrado"));
         item.ifPresent(i -> itens.remove(i));
     }
+    
 
     public Optional<Item> buscarItemPorNome(String nomeProduto) {
         Optional<Item> itemEncontrado = Optional.empty();
@@ -51,7 +55,7 @@ public class ColecaoItem {
 
         return total;
     }
-    
+
     public List<Item> getListaItens() {
         return Collections.unmodifiableList(itens);
     }

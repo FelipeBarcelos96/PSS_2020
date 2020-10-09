@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufes.model;
 
 /**
@@ -17,17 +12,18 @@ public class Estoque {
         this.quantidade = quantidade;
     }
 
-    public boolean estoqueDisponivel(double quantidadeNecessaria) {
-        return this.quantidade >= quantidadeNecessaria;
+    public boolean isDisponivel(double quantidade) {
+        return this.quantidade >= quantidade;
     }
 
     private void adicionarQuantidade(double quantidadeAdicionada) {
-
         this.quantidade += quantidadeAdicionada;
-
     }
 
     public void removerQuantidade(double quantidade) {
+        if(quantidade > this.quantidade)
+            throw new RuntimeException("Estoque indisponível para atender a quantidade solicitada");
+        
         this.quantidade -= quantidade;
     }
 

@@ -52,7 +52,7 @@ public class RealizarPagamento {
             this.getPedido().setFormaPagamento(this.getFormaPagamento());
             try {
                 for (Item item : this.getPedido().getCarrinho().getColecaoItens().getListaItens()) {
-                    if (item.getProduto().getEstoque().estoqueDisponivel(item.getQuantidade())) {
+                    if (item.getProduto().getEstoque().isDisponivel(item.getQuantidade())) {
                         item.getProduto().getEstoque().removerQuantidade(item.getQuantidade());
                     } else {
                         throw new RuntimeException("Estoque indisponível para atender a quantidade solicitada (" + Double.toString(item.getQuantidade())

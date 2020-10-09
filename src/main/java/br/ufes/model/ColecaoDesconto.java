@@ -15,31 +15,30 @@ public class ColecaoDesconto {
 
     public void add(Desconto desconto) {
         if (!buscarDescontoPorDescricao(desconto.getDescricao()).isEmpty()) {
-            throw new RuntimeException("O desconto:  '" + desconto.getDescricao()+ "' já foi aplicado!");
+            throw new RuntimeException("O desconto: '" + desconto.getDescricao() + "' já foi aplicado!");
         }
 
         descontos.add(desconto);
     }
-    
+
     public void remover(String descricao) {
         Optional<Desconto> desconto = buscarDescontoPorDescricao(descricao);
         desconto.orElseThrow(() -> new RuntimeException("Não foi possível remover o desconto '" + descricao + "'! Desconto não encontrado"));
         desconto.ifPresent(i -> descontos.remove(i));
     }
 
-
-    public Optional<Desconto> buscarDescontoPorDescricao(String descricao){
+    public Optional<Desconto> buscarDescontoPorDescricao(String descricao) {
         Optional<Desconto> descontoEncontrado = Optional.empty();
-        
-        for(Desconto desconto : descontos) {
+
+        for (Desconto desconto : descontos) {
             if (desconto.getDescricao().equalsIgnoreCase(descricao)) {
                 descontoEncontrado = Optional.of(desconto);
             }
         }
-        
+
         return descontoEncontrado;
     }
-    
+
     public double calcularTotalDesconto() {
         double total = 0;
 
@@ -53,8 +52,8 @@ public class ColecaoDesconto {
     public List<Desconto> getListaDescontos() {
         return Collections.unmodifiableList(descontos);
     }
-    
-    public boolean isEmpty(){
+
+    public boolean isEmpty() {
         return descontos.isEmpty();
     }
 

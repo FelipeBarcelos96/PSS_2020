@@ -4,7 +4,8 @@ import br.ufes.model.CarrinhoDeCompra;
 import br.ufes.model.Desconto;
 import java.time.LocalDate;
 
-public class AplicarDescontoAniversarioBusiness{
+public class AplicarDescontoAniversarioBusiness {
+
     private double porcentagem;
     private CarrinhoDeCompra carrinho;
 
@@ -20,13 +21,14 @@ public class AplicarDescontoAniversarioBusiness{
         int hojeDia = LocalDate.now().getDayOfMonth();
         int hojeMes = LocalDate.now().getMonthValue();
 
-        if ( !((clienteDia == hojeDia) && (clienteMes == hojeMes)) )
-            throw new RuntimeException("O cliente '"+carrinho.getCliente().getNome()+"' não está fazendo aniversário hoje!");
-        
+        if (!((clienteDia == hojeDia) && (clienteMes == hojeMes))) {
+            throw new RuntimeException("O cliente '" + carrinho.getCliente().getNome() + "' não está fazendo aniversário hoje!");
+        }
+
         String descricao = "Desconto Aniversário";
         double valorOrigem = carrinho.getValorTotal();
         double valorDesconto = valorOrigem * (porcentagem / 100);
-                
+
         Desconto desconto = new Desconto(descricao, valorDesconto, valorOrigem, porcentagem);
         carrinho.getColecaoDescontos().add(desconto);
     }

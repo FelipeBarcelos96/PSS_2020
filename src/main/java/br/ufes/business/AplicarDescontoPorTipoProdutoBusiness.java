@@ -4,7 +4,7 @@ import br.ufes.model.CarrinhoDeCompra;
 import br.ufes.model.Desconto;
 import br.ufes.model.Item;
 
-public class AplicarDescontoPorTipoProdutoBusiness{
+public class AplicarDescontoPorTipoProdutoBusiness {
 
     private CarrinhoDeCompra carrinho;
 
@@ -12,19 +12,22 @@ public class AplicarDescontoPorTipoProdutoBusiness{
         this.carrinho = carrinho;
     }
 
-    
     public void aplicar() {
         MapTipoDesconto descontoTipo = new MapTipoDesconto();
         double porcentagem;
-        for(Item item : carrinho.getColecaoItens().getListaItens()){
+        for (Item item : carrinho.getColecaoItens().getListaItens()) {
+            String descricao = "Desconto Produto: " + item.getProduto().getNome();
+            
+            if (!carrinho.getColecaoDescontos().buscarDescontoPorDescricao(descricao).isEmpty())
+                continue;
+            
             porcentagem = 0;
-            try{
-                 porcentagem = descontoTipo.buscarDescontoPorTipo(item.getProduto().getTipo());
-            }catch(Exception ex){
+            try {
+                porcentagem = descontoTipo.buscarDescontoPorTipo(item.getProduto().getTipo());
+            } catch (Exception ex) {
                 continue;
             }
-            
-            String descricao = "Desconto Produto: " + item.getProduto().getNome();
+
             double valorOrigem = item.getValorItem();
             double valorDesconto = valorOrigem * (porcentagem / 100);
 

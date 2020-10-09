@@ -15,11 +15,11 @@ public class Desconto {
         this.valorOrigem = valorOrigem;
         this.porcentagem = porcentagem;
     }
-    
+
     public String getDescricao() {
         return this.descricao;
     }
-    
+
     public double getValor() {
         return this.valorDesconto;
     }
@@ -35,11 +35,11 @@ public class Desconto {
     public double getValorOrigem() {
         return valorOrigem;
     }
-            
+
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("0.00");
-        return this.descricao + " - "+porcentagem+"% de R$ "+df.format(valorOrigem)+" - Valor do desconto = R$ "+ df.format(valorDesconto);
-    }    
+        return this.descricao + " - " + porcentagem + "% de R$ " + df.format(valorOrigem) + " - Valor do desconto = R$ " + df.format(valorDesconto);
+    }
 
 }
