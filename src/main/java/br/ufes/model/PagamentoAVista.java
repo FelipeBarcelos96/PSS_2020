@@ -18,7 +18,7 @@ public class PagamentoAVista implements FormaPagamento {
     @Override
     public void pagar(Pedido pedido) {
         try {
-            if (pedido.getEstado().toUpperCase().equals("PAGO")) {
+            if (!pedido.getEstado().toUpperCase().equals("PAGO")) {
                 pedido.setEstado("PAGO");
             }
         } catch (Exception e) {

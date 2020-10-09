@@ -25,6 +25,10 @@ public final class Item {
     private void calculaValorItem() {
         this.valorItem = valorUnitario * quantidade;
     }
+	
+	public void removeQuantidade(int quantidade){
+		this.quantidade -= quantidade;
+	}
 
     public double getValorUnitario() {
         return valorUnitario;
