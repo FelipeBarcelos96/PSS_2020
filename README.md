@@ -3,6 +3,15 @@
 Projeto de Sistemas de Software<br>
 <b>Cód Atividade:</b> PSS_Pedido_002
 <br><br>
+<b>Alunos:</b>
+Douglas Alves da Silva - 2013203848<br>
+Felipe Pitanga Barcelos - 2014204440<br>
+Ingrid de Souza Santos - 2016203729<br>
+Luiz Fernando de Almeida Pereira<br>
+Pedro Henrique Robadel da Silva Camâra - 2016204178<br>
+Valquiria Anacleto da Silva - 2016204345<br>
+
+<br><br>
 <b>Comando para clonagem:</b> git clone https://github.com/FelipeBarcelos96/PSS_2020.git
 <br><br>
 <h2><b>Diagrama de Classes:</b></h2><br>
