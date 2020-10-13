@@ -14,6 +14,9 @@ Valquiria Anacleto da Silva - 2016204345<br>
 <br><br>
 <b>Comando para clonagem:</b> git clone https://github.com/FelipeBarcelos96/PSS_2020.git
 <br><br>
+<h2><b>Diagrama de Caso de Uso:</b></h2><br>
+<img src="assets/Diagrama de Caso de Uso.png" alt="Diagrama de Classes">
+<br><br>
 <h2><b>Diagrama de Classes:</b></h2><br>
 <img src="assets/Diagrama de Classes.png" alt="Diagrama de Classes">
 <br><br>
